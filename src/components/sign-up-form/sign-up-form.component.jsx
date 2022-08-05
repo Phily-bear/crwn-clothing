@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -15,6 +16,7 @@ const defaultFormFields = {
 };
 
 const SignUpForm = () => {
+  /* 如果在这个组件里面用到了useContext，并且useContext中的数据发生变化，如果在return中没有用到useContext中的数据，那么在return之前的代码也会被重新执行；如果用到，return块的代码也会被一起执行 */
   const [formFields, setFormFields] = useState(defaultFormFields);
 
   const { displayName, email, password, confirmPassword } = formFields;
@@ -35,6 +37,7 @@ const SignUpForm = () => {
         email,
         password
       );
+
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
